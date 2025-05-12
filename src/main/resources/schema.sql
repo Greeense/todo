@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS todo;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    social VARCHAR(20)
+);
+
+CREATE TABLE todo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    completed BOOLEAN DEFAULT FALSE,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
