@@ -34,6 +34,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         }
 
         request.setAttribute("userId", userId); // 이후 컨트롤러에서 사용
+        System.out.println("[JwtAuthInterceptor] getUserId : "+userId);
         return true;
     }
 }

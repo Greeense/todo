@@ -1,16 +1,11 @@
 package com.example.todo.controller;
 
 import com.example.todo.entity.User;
-import com.example.todo.repository.UserRepository;
 import com.example.todo.service.UserService;
-import com.example.todo.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -46,11 +41,26 @@ public class UserController {
     
     //내 정보 조회
     @GetMapping("/me")
-    public ResponseEntity<?> me(HttpServletRequest request){
+    public ResponseEntity<?> searchUserInfo(HttpServletRequest request){
         Long userId = (Long) request.getAttribute("userId");
         User user = userService.getUserInfo(userId);
+        System.out.println("[UserController/me] success");
         return ResponseEntity.ok(user);
     }
-    
 
+    //내 정보 수정
+    @PutMapping("/me")
+    public ResponseEntity<?> editUserInfo(@RequestBody User user, HttpServletRequest request){
+        Long userId = (Long) request.getAttribute("userId");
+        userService.editUserInfo(userId, user);
+        return ResponseEntity.ok("[UserController/user] edit userInfo Success");
+    }
+
+    //회원 삭제
+    @DeleteMapping("/me")
+    public void deleteUserInfo(HttpServletRequest request){
+        Long userId = (Long) request.getAttribute("userId");
+        userService.deleteUserInfo(userId);
+        System.out.println("[UserController/deleteUserInfo] delete userInfo Success");
+    }
 }
