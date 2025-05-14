@@ -26,7 +26,7 @@ SQLite3와 JWT 인증 방식을 활용한 TODO 관리 RESTful API 프로젝트�
 | POST | /users/signup | 회원가입 | { "username": "", "email": "", "password": "", "social": "" } | 200 OK, "Sign Success" |
 | POST | /users/login | 로그인 및 JWT 토큰 발급 | { "email": "", "password": "" } | { "access_token": "..." } |
 | GET | /users/me | 내 정보 조회 | Header: Authorization: Bearer {token} | { "username": "", "password": "", "email": "", "social": "", "todos" : [] } |
-| PUT | /users/me | 내 정보 수정 | Header: Authorization: Bearer {token}  Body : { "username": "", "email": "", "password":"" } | 200 OK, "edit userInfo Success" |
+| PUT | /users/me | 내 정보 수정 | Header: Authorization: Bearer {token} <br> Body : { "username": "", "email": "", "password":"" } | 200 OK, "edit userInfo Success" |
 | DELETE | /users/me | 내 정보 삭제 | Header: Authorization: Bearer {token} | 200 OK, "delete user Success" | 
 
 ### 📝 TODO API (JWT 인증 필요)
