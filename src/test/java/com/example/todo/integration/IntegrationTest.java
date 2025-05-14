@@ -11,17 +11,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.print.attribute.standard.Media;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserAuthIntegrationTest {
+public class IntegrationTest {
 
-    private static final Logger log = LoggerFactory.getLogger(UserAuthIntegrationTest.class);
+    private static final Logger log = LoggerFactory.getLogger(IntegrationTest.class);
     @Autowired
     private MockMvc mockMvc;
 
