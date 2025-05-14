@@ -14,17 +14,25 @@ SQLite3와 JWT 인증 방식을 활용한 TODO 관리 RESTful API 프로젝트�
 - Spring MockMvc (통합 테스트)
 
 ## 3. 프로젝트 구조
-src/main/java/com/example/demo
+```
+src/main/java/com/example/todo
  ┣ config/
- ┃ ┗ WebConfig.java (Interceptor 등록)
+ ┃ ┗ WebConfig.java          
  ┣ controller/
  ┃ ┣ UserController.java
  ┃ ┗ TodoController.java
- ┣ dto
- ┃ ┣ UserDto.java, LoginDto.java, TodoDto.java
+ ┣ dto/
+ ┃ ┣ UserDto.java
+ ┃ ┣ LoginDto.java
+ ┃ ┗ TodoDto.java
  ┣ entity/
  ┃ ┣ User.java
  ┃ ┗ Todo.java
+ ┣ exception/
+ ┃ ┣ GlobalExceptionHandler.java
+ ┃ ┣ UserNotFoundException.java 
+ ┃ ┣ TodoNotFoundException.java
+ ┃ ┗ AccessDeniedException.java
  ┣ interceptor/
  ┃ ┗ JwtAuthInterceptor.java
  ┣ repository/
@@ -34,8 +42,18 @@ src/main/java/com/example/demo
  ┃ ┣ UserService.java
  ┃ ┗ TodoService.java
  ┣ util/
- ┃ ┗ JwtUtil.java
- ┗ DemoApplication.java
+ ┃ ┣ JwtUtil.java
+ ┃ ┗ LogUtil.java
+ ┗ TodoApiApplication.java
+ 
+src/test/java/com/example/todo          
+ ┣ integration/
+ ┃ ┣ Integration.java
+ ┣ unit/
+ ┃ ┣ TodoServiceTest.java
+ ┗ ┗ UserServiceTest.java
+ 
+```
  
 ## 4. 실행 방법
 ### 1️⃣ API 서버 프로젝트 실행
@@ -96,20 +114,16 @@ src/main/java/com/example/demo
 | 잘못된 로그인 정보 | 400 Bad Request | Invalid Credentials |
 | 필수 파라미터 누락 | 400 Bad Request | Validation Errors |
 
-## 7. 테스트
+## 7. SQLite 초기화
+- schema.sql: 테이블 정의 (user, todo)
+- data.sql: 샘플 데이터 삽입
+- application.properties에서 spring.datasource.initialization-mode=always 설정
+
+## 8. 테스트
 - 단위 테스트 (Mockito): [UserServiceTest.java] UserService, [TodoService.java] TodoService
 - 통합 테스트 (MockMvc): [IntegrationTest.java] 회원가입 → 로그인 → Todo CRUD 전체 플로우 검증
 
-## 8. SQLite 초기화
-- schema.sql: 테이블 정의 (user, todo)
-- data.sql: 샘플 데이터 삽입
-- application.yml에서 spring.sql.init.mode=always 설정
-
-## 9. 주의사항
-- 개발/테스트 환경용 프로젝트
-- 운영 배포 시 RDBMS & 마이그레이션 도구 적용 필요
-
-## 10. 테스트 코드 실행 방법
+## 9. 테스트 코드 실행 방법
 
 ### 1️⃣ IntelliJ IDE에서 실행
 - 테스트 파일을 열고 ▶️ 버튼 클릭 후 Run Test
