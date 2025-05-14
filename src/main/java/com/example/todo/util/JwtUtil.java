@@ -43,7 +43,7 @@ public class JwtUtil {
                     .parseClaimsJws(token) //내용을 반환
                     .getBody(); //내용에서 userId를 가져옴
 
-            System.out.println("[JwtUtil/validateTokenAndGetUserId] validate Token and Get userId Success");
+            LogUtil.debug(this.getClass(), "[JwtUtil/validateTokenAndGetUserId] Success");
             return Long.parseLong(claims.getSubject()); //userId를 long으로 변환 후 반환
         }catch (Exception e){
             throw new RuntimeException("Invalid jwt Token");
