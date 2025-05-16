@@ -135,14 +135,14 @@ src/test/java/com/example/todo
   ./gradlew test  # Windows는 gradlew.bat test
   ```
 
-- 특정 클래스만 실행 (예: TodoServiceTest)
+- 단위테스트 실행 (예: TodoServiceTest)
   ```bash
-  ./gradlew test --tests "com.example.todo.service.TodoServiceTest"
+  ./gradlew test --tests "com.example.todo.unit.TodoServiceTest"
   ```
 
-- 특정 메서드만 실행 (예: createTodo_success)
+- 통합테스트 실행 (예: createTodo_success)
   ```bash
-  ./gradlew test --tests "com.example.todo.service.TodoServiceTest.createTodo_success"
+  ./gradlew test --tests "com.example.todo.integration.IntegrationTest"
   ```
 
 ### 3️⃣ 테스트 결과 확인
